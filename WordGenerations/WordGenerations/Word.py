@@ -23,13 +23,15 @@ class CWord:
 
         if (roll < mutateChangePercent):
             mutateChange();
-            pass;
+
         elif (roll < (mutateChangePercent + mutateAddPercent)):
-            pass;
+            mutateAdd();
+
         elif (roll < (mutateChangePercent + mutateAddPercent + mutateRemovePercent)):
-            pass;
+            mutateRemove();
+
         elif (roll < (mutateChangePercent + mutateAddPercent + mutateRemovePercent + mutateSwapPercent)):
-            pass;
+            mutateSwap();
 
     def conection(self, wordToFind):
         pass;
@@ -43,8 +45,6 @@ class CWord:
 
         self.contents[mutatedIndex] = mutatedChar;
 
-        pass;
-
     def mutateAdd(self):
         pass;
 
@@ -55,7 +55,7 @@ class CWord:
         pass;
 
     def display(self):
-        print(self.contents);
+        print(self.contents, end = '');
 
-print("Word Loaded");
+#print("Word Loaded");
 

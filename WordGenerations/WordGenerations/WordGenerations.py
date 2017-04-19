@@ -13,11 +13,10 @@ def main():
     for z in range(NumberOfWords):
         words[z].display();
 
-    print("hello");
-    myNumber = NumberOfWords;
-    print("my number is: " + str(myNumber));
-
-    print(words);
+        if (z == NumberOfWords - 1):
+            print('\n', end = '');
+        else:
+            print(', ', end = '');
 
 
 main();
