@@ -63,7 +63,22 @@ class CWord:
             self.contents = self.contents[:randomPos - 1] + self.contents[randomPos:];
 
     def mutateSwap(self):
+        pos1 = random.randrange(1, len(self.contents));
+        pos2 = random.randrange(1, len(self.contents));
         
+        while(pos2 == pos1):
+           pos2 = random.randrange(0, len(self.contents));
+
+        char2 = self.contents[pos2 - 1];
+        char1 = self.contents[pos1 - 1];
+
+        if (pos1 > pos2):
+            temp = pos1;
+            pos1 = pos2;
+            pos2 = temp;
+
+        self.contents = self.contents[: pos1 - 1] + char2 + self.contents[pos1 : pos2 - 1] + char1 + self.contents[pos2:];
+
         pass;
 
     def display(self):

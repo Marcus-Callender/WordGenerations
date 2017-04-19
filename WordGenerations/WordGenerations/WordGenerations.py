@@ -31,30 +31,30 @@ def main():
         else:
             print(', ', end = '');
 
-    hello = "hello";
-    
-    hello = Add(0, 'Y', hello);
-    print(hello);
-    
-    hello = Add(7, 'Y', hello);
-    print(hello);
-    
-    hello = Add(5, 'Y', hello);
-    print(hello);
-    
-    hello = remove(2, hello);
-    print(hello);     
-    
-    hello = remove(1, hello);
-    print(hello);
-    
-    hello = remove(6, hello);
-    print(hello);   
-
-    marcus = "marcus";
-    print(marcus);
-    marcus = swap(2, 4, marcus);
-    print(marcus);
+    #hello = "hello";
+    #
+    #hello = Add(0, 'Y', hello);
+    #print(hello);
+    #
+    #hello = Add(7, 'Y', hello);
+    #print(hello);
+    #
+    #hello = Add(5, 'Y', hello);
+    #print(hello);
+    #
+    #hello = remove(2, hello);
+    #print(hello);     
+    #
+    #hello = remove(1, hello);
+    #print(hello);
+    #
+    #hello = remove(6, hello);
+    #print(hello);   
+    #
+    #marcus = "marcus";
+    #print(marcus);
+    #marcus = swap(2, 4, marcus);
+    #print(marcus);
 
 def Add(pos, letter, string):
     randomLetter = chr(random.randrange(97, 123));
