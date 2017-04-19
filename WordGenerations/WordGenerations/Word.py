@@ -37,7 +37,7 @@ class CWord:
 
         elif (roll < (self.mutateChangePercent + self.mutateAddPercent + self.mutateRemovePercent + self.mutateSwapPercent)):
             self.mutateSwap();
-            #print("Swap: " + temp + " -> " + self.contents);
+            print("Swap: " + temp + " -> " + self.contents);
 
     def conection(self, wordToFind):
         pass;
@@ -49,7 +49,6 @@ class CWord:
         while(self.contents[mutatedIndex] == mutatedChar):
             mutatedChar = chr(random.randrange(97, 123));
 
-        #self.contents[mutatedIndex] = mutatedChar;
         self.contents = self.contents[:mutatedIndex - 1] + mutatedChar + self.contents[mutatedIndex:];
 
     def mutateAdd(self):
@@ -64,6 +63,7 @@ class CWord:
             self.contents = self.contents[:randomPos - 1] + self.contents[randomPos:];
 
     def mutateSwap(self):
+        
         pass;
 
     def display(self):

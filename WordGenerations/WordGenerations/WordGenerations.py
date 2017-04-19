@@ -31,25 +31,30 @@ def main():
         else:
             print(', ', end = '');
 
-    #hello = "hello";
-    #
-    #hello = Add(0, 'Y', hello);
-    #print(hello);
-    #
-    #hello = Add(7, 'Y', hello);
-    #print(hello);
-    #
-    #hello = Add(5, 'Y', hello);
-    #print(hello);
-    #
-    #hello = remove(2, hello);
-    #print(hello);     
-    #
-    #hello = remove(1, hello);
-    #print(hello);
-    #
-    #hello = remove(6, hello);
-    #print(hello);   
+    hello = "hello";
+    
+    hello = Add(0, 'Y', hello);
+    print(hello);
+    
+    hello = Add(7, 'Y', hello);
+    print(hello);
+    
+    hello = Add(5, 'Y', hello);
+    print(hello);
+    
+    hello = remove(2, hello);
+    print(hello);     
+    
+    hello = remove(1, hello);
+    print(hello);
+    
+    hello = remove(6, hello);
+    print(hello);   
+
+    marcus = "marcus";
+    print(marcus);
+    marcus = swap(2, 4, marcus);
+    print(marcus);
 
 def Add(pos, letter, string):
     randomLetter = chr(random.randrange(97, 123));
@@ -75,6 +80,28 @@ def remove(pos, string):
     return string;
 
 def swap(pos1, pos2, string):
+    
+    while(pos2 == pos1):
+       pos2 = random.randrange(0, len(string));
+
+    char2 = string[pos2 - 1];
+    char1 = string[pos1 - 1];
+
+    if (pos1 > pos2):
+        temp = pos1;
+        pos1 = pos2;
+        pos2 = temp;
+
+    print("######");
+    print("0 - " + str(pos1) + ": " + string[:pos1]);
+
+    print(str(pos1) + " - " + str(pos2) + ": " + string[pos1 : pos2]);
+
+    print(str(pos2) + " - end " + ": " + string[pos2:]);
+    print("######");
+
+    string = string[: pos1 - 1] + char2 + string[pos1 : pos2 - 1] + char1 + string[pos2:];
+
     return string;
     
 
