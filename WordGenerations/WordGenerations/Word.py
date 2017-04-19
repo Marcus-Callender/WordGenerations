@@ -46,12 +46,10 @@ class CWord:
         self.contents[mutatedIndex] = mutatedChar;
 
     def mutateAdd(self):
-        #if (self.length < wordMaxLength):
-        #    randomLetter = chr(random.randrange(97, 123));
-        #    posInString = random.randrange(0, self.length);
-
-
-        pass;
+        if (self.length < wordMaxLength):
+            randomLetter = chr(random.randrange(97, 123));
+            posInString = random.randrange(0, self.length + 1);
+            self.contents = self.contents[:posInString] + randomLetter + self.contents[posInString:];
 
     def mutateRemove(self):
         pass;
