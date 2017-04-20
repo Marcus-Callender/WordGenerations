@@ -1,4 +1,5 @@
 import random
+import math
 
 class CWord:
 
@@ -12,7 +13,7 @@ class CWord:
         self.mutateChangePercent = 12.0;
         self.mutateAddPercent = 3.0;
         self.mutateRemovePercent = 3.0;
-        self.mutateSwapPercent = 3.0;
+        self.mutateSwapPercent = 5.0;
 
         self.length = random.randrange(self.wordMinLength, self.wordMaxLength);
 
@@ -23,24 +24,24 @@ class CWord:
         self.contents = word;
         self.length = len(word);
 
-    def mutate(self):
+    def Mutate(self):
         temp = self.contents;
         roll = random.randrange(100);
 
         if (roll < self.mutateChangePercent):
-            self.mutateChange();
+            self.MutateChange();
             print("Change: " + temp + " -> " + self.contents);
 
         elif (roll < (self.mutateChangePercent + self.mutateAddPercent)):
-            self.mutateAdd();
+            self.MutateAdd();
             print("Add: " + temp + " -> " + self.contents);
 
         elif (roll < (self.mutateChangePercent + self.mutateAddPercent + self.mutateRemovePercent)):
-            self.mutateRemove();
+            self.MutateRemove();
             print("Remove: " + temp + " -> " + self.contents);
 
         elif (roll < (self.mutateChangePercent + self.mutateAddPercent + self.mutateRemovePercent + self.mutateSwapPercent)):
-            self.mutateSwap();
+            self.MutateSwap();
             print("Swap: " + temp + " -> " + self.contents);
 
     def Compare(self, wordToFind):
@@ -55,8 +56,8 @@ class CWord:
             while (x < len(tempComparitor)):
                 if (tempMe[z] == tempComparitor[x]):
                     matchingLetters += 2;
-                    tempMe = self.remove(z, tempMe);
-                    tempComparitor = self.remove(x, tempComparitor);
+                    tempMe = self.Remove(z, tempMe);
+                    tempComparitor = self.Remove(x, tempComparitor);
                     x = -1;
 
                 x += 1;
@@ -93,7 +94,7 @@ class CWord:
 
         return letterMatchPercent + patternMatchPercent;
 
-    def mutateChange(self):
+    def MutateChange(self):
         # selects a random char in the string and records it
         randomIndex = random.randrange(0, self.length);
         randomChar = self.contents[randomIndex];
@@ -104,7 +105,7 @@ class CWord:
 
         self.contents = self.Change(randomIndex, randomChar, self.contents);
 
-    def mutateAdd(self):
+    def MutateAdd(self):
         # checks the length of  the current word is below the maximum
         if (self.length <= self.wordMaxLength):
 
@@ -114,16 +115,16 @@ class CWord:
 
             self.contents = self.Add(randomIndex, randomChar, self.contents);
 
-    def mutateRemove(self):
+    def MutateRemove(self):
         # checks the length of the string is not less than the minimum
         if (self.length > self.wordMinLength):
 
             # selects a random char to remove
             randomPos = random.randrange(0, len(self.contents));
 
-            self.contents = self.remove(randomPos, self.contents);
+            self.contents = self.Remove(randomPos, self.contents);
 
-    def mutateSwap(self):
+    def MutateSwap(self):
         # selects two random positions
         pos1 = random.randrange(0, len(self.contents));
         pos2 = random.randrange(0, len(self.contents));
@@ -138,22 +139,22 @@ class CWord:
             pos1 = pos2;
             pos2 = temp;
 
-        # records the chars
-        char1 = self.contents[pos1];
-        char2 = self.contents[pos2];
+        self.contents = self.Swap(pos1, pos2, self.contents);
 
-        self.contents = self.swap(pos1, pos2, self.contents);
-
-    def display(self):
+    def Display(self):
         print(self.contents, end = '');
 
-    def remove(self, pos, string):
+    def Remove(self, pos, string):
         # the letters before the char + the letters after the char
         string = string[:pos] + string[pos + 1:];
 
         return string;
 
-    def swap(self, pos1, pos2, string):
+    def Swap(self, pos1, pos2, string):
+        # records the chars at the givven points
+        char1 = self.contents[pos1];
+        char2 = self.contents[pos2];
+
         # the letters before the first pos + the seccond char + the letters between pos1 & 2 + the first char + the letters after the seccond pos
         string = string[: pos1] + char2 + string[pos1 + 1 : pos2] + char1 + string[pos2 + 1:];
     
@@ -171,5 +172,9 @@ class CWord:
 
         return string;
 
-#print("Word Loaded");
+    def GetFirstHalf(self):
+        return self.contents[:math.ceil(self.length)];
+
+    def GetSeccondHalf(self):
+        return self.contents[math.floor(self.length):];
 
