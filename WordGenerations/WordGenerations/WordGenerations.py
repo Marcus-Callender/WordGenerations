@@ -30,6 +30,23 @@ def main():
             print('\n', end = '');
         else:
             print(', ', end = '');
+
+    testNums = [1, 4, 20, 5, 100, 4, 1];
+
+    z = 0;
+    x = 1;
+
+    while (z < len(testNums)):
+        while (x < len(testNums)):
+            if (testNums[z] > testNums[x]):
+                temp = testNums[z];
+                testNums[z] = testNums[x];
+                testNums[x] = temp;
+            x += 1;
+        z += 1;
+        x = z + 1;
+
+    print(testNums);
     
 main();
 
