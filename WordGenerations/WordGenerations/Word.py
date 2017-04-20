@@ -94,41 +94,55 @@ class CWord:
         return letterMatchPercent + patternMatchPercent;
 
     def mutateChange(self):
-        mutatedIndex = random.randrange(0, self.length);
-        mutatedChar = self.contents[mutatedIndex];
+        # selects a random char in the string and records it
+        randomIndex = random.randrange(0, self.length);
+        randomChar = self.contents[randomIndex];
 
-        while(self.contents[mutatedIndex] == mutatedChar):
-            mutatedChar = chr(random.randrange(97, 123));
+        # finds a random char (a-z) that isn't the same as the original
+        while(self.contents[randomIndex] == randomChar):
+            randomChar = chr(random.randrange(97, 123));
 
-        self.contents = self.contents[:mutatedIndex - 1] + mutatedChar + self.contents[mutatedIndex:];
+        self.contents = self.Change(randomIndex, randomChar, self.contents);
 
     def mutateAdd(self):
-        if (self.length < self.wordMaxLength):
-            randomLetter = chr(random.randrange(97, 123));
-            posInString = random.randrange(0, self.length + 1);
-            self.contents = self.contents[:posInString] + randomLetter + self.contents[posInString:];
+        # checks the length of  the current word is below the maximum
+        if (self.length <= self.wordMaxLength):
+
+            # selects a random char (a-z) and position in the string
+            randomChar = chr(random.randrange(97, 123));
+            randomIndex = random.randrange(0, self.length + 1);
+
+            self.contents = self.Add(randomIndex, randomChar, self.contents);
 
     def mutateRemove(self):
+        # checks the length of the string is not less than the minimum
         if (self.length > self.wordMinLength):
-            randomPos = random.randrange(1, len(self.contents));
-            self.contents = self.contents[:randomPos - 1] + self.contents[randomPos:];
+
+            # selects a random char to remove
+            randomPos = random.randrange(0, len(self.contents));
+
+            self.contents = self.remove(randomPos, self.contents);
 
     def mutateSwap(self):
-        pos1 = random.randrange(1, len(self.contents));
-        pos2 = random.randrange(1, len(self.contents));
+        # selects two random positions
+        pos1 = random.randrange(0, len(self.contents));
+        pos2 = random.randrange(0, len(self.contents));
         
+        # ensures the positions are not the same
         while(pos2 == pos1):
            pos2 = random.randrange(0, len(self.contents));
 
-        char2 = self.contents[pos2 - 1];
-        char1 = self.contents[pos1 - 1];
-
+        # makes the smaller number pos1
         if (pos1 > pos2):
             temp = pos1;
             pos1 = pos2;
             pos2 = temp;
 
-        self.contents = self.contents[: pos1 - 1] + char2 + self.contents[pos1 : pos2 - 1] + char1 + self.contents[pos2:];
+        # records the chars
+        char1 = self.contents[pos1];
+        char2 = self.contents[pos2];
+
+        self.contents = self.swap(pos1, pos2, self.contents);
 
     def display(self):
         print(self.contents, end = '');
