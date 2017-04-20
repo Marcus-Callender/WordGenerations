@@ -11,9 +11,9 @@ class CWord:
         self.wordMaxLength = 12;
 
         self.mutateChangePercent = 24.0;
-        self.mutateAddPercent = 6.0;
-        self.mutateRemovePercent = 6.0;
-        self.mutateSwapPercent = 10.0;
+        self.mutateAddPercent = 7.0;
+        self.mutateRemovePercent = 7.0;
+        self.mutateSwapPercent = 12.0;
 
         self.length = random.randrange(self.wordMinLength, self.wordMaxLength);
 
