@@ -69,21 +69,30 @@ def main():
     print(hello.remove(0, hello.contents));
     print(hello.remove(4, hello.contents));
 
+    print("");
+    
+    print(hello.swap(0, 2, hello.contents));
+    print(hello.swap(0, 1, hello.contents));
+    print(hello.swap(1, 4, hello.contents));
+
+    print("");
+    
+    print(hello.Add(0, "Y", hello.contents));
+    print(hello.Add(1, "P", hello.contents));
+    print(hello.Add(4, "N", hello.contents));
+    print(hello.Add(5, "Z", hello.contents));
+
+    print("");
+    
+    print(hello.Change(0, "Y", hello.contents));
+    print(hello.Change(1, "P", hello.contents));
+    print(hello.Change(4, "Z", hello.contents));
+
 def Add(pos, letter, string):
     randomLetter = chr(random.randrange(97, 123));
     posInString = random.randrange(0, len(string));
     
     string = string[:pos] + letter + string[pos:];
-
-    #if (pos == len(string) + 1):
-    #    string += letter;
-    #
-    #elif (pos == 0):
-    #    string = letter + string;
-    #
-    #else:
-    #    string = string[:pos] + letter + string[pos:];
-    #    pass;
 
     return string;
 

@@ -48,15 +48,6 @@ class CWord:
         tempComparitor = wordToFind;
         matchingLetters = 0;
 
-        #for z in range(len(tempMe)):
-        #    for x in range(len(tempComparitor)):
-        #        if (tempMe[z] == tempComparitor[x]):
-        #            matchingLetters += 2;
-        #            tempMe = self.remove(z, tempMe);
-        #            tempComparitor = self.remove(x, tempComparitor);
-        #            #z -= 1;
-        #            x = 0;
-
         z = 0;
         x = 0;
 
@@ -143,15 +134,34 @@ class CWord:
         print(self.contents, end = '');
 
     def remove(self, pos, string):
-        #if (pos == 0):
-        #    string = string[pos + 1:];
-        #else:
-        #    string = string[:pos - 1] + string[pos:];
-        
-        #string = string[:pos - 1] + string[pos:];
-        
         string = string[:pos] + string[pos + 1:];
 
+        return string;
+
+    def swap(self, pos1, pos2, string):
+        
+        while(pos2 == pos1):
+           pos2 = random.randrange(0, len(string));
+    
+        char2 = string[pos2];
+        char1 = string[pos1];
+    
+        if (pos1 > pos2):
+            temp = pos1;
+            pos1 = pos2;
+            pos2 = temp;
+    
+        string = string[: pos1] + char2 + string[pos1 + 1 : pos2] + char1 + string[pos2 + 1:];
+    
+        return string;
+
+    def Add(self, pos, letter, string):
+        string = string[:pos] + letter + string[pos:];
+    
+        return string;
+
+    def Change(self, pos, letter, string):
+        string = string[:pos] + letter + string[pos + 1:];
         return string;
 
 #print("Word Loaded");
