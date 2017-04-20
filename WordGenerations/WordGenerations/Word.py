@@ -148,34 +148,27 @@ class CWord:
         print(self.contents, end = '');
 
     def remove(self, pos, string):
+        # the letters before the char + the letters after the char
         string = string[:pos] + string[pos + 1:];
 
         return string;
 
     def swap(self, pos1, pos2, string):
-        
-        while(pos2 == pos1):
-           pos2 = random.randrange(0, len(string));
-    
-        char2 = string[pos2];
-        char1 = string[pos1];
-    
-        if (pos1 > pos2):
-            temp = pos1;
-            pos1 = pos2;
-            pos2 = temp;
-    
+        # the letters before the first pos + the seccond char + the letters between pos1 & 2 + the first char + the letters after the seccond pos
         string = string[: pos1] + char2 + string[pos1 + 1 : pos2] + char1 + string[pos2 + 1:];
     
         return string;
 
     def Add(self, pos, letter, string):
+        # the letters before the pos + the char + the letters after the pos
         string = string[:pos] + letter + string[pos:];
     
         return string;
 
     def Change(self, pos, letter, string):
+        # the letters before the pos + the char + the letters after the pos (excluding the old char)
         string = string[:pos] + letter + string[pos + 1:];
+
         return string;
 
 #print("Word Loaded");
