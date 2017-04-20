@@ -32,6 +32,7 @@ def main():
             print(', ', end = '');
 
     #hello = "hello";
+    #print(hello[-1]);
     #
     #hello = Add(0, 'Y', hello);
     #print(hello);
@@ -55,6 +56,18 @@ def main():
     #print(marcus);
     #marcus = swap(2, 4, marcus);
     #print(marcus);
+
+    hello = CWord();
+    hello.SetWord("hello");
+    
+    print("comp: " + str(hello.Compare("hello")));
+    print("comp: " + str(hello.Compare("yellow")));
+    print("comp: " + str(hello.Compare("llohey")));
+    print("comp: " + str(hello.Compare("goodbye")));
+
+    print(hello.remove(1, hello.contents));
+    print(hello.remove(0, hello.contents));
+    print(hello.remove(4, hello.contents));
 
 def Add(pos, letter, string):
     randomLetter = chr(random.randrange(97, 123));
@@ -97,7 +110,7 @@ def swap(pos1, pos2, string):
 
     print(str(pos1) + " - " + str(pos2) + ": " + string[pos1 : pos2]);
 
-    print(str(pos2) + " - end " + ": " + string[pos2:]);
+    print(str(pos2) + " - end : " + string[pos2:]);
     print("######");
 
     string = string[: pos1 - 1] + char2 + string[pos1 : pos2 - 1] + char1 + string[pos2:];
