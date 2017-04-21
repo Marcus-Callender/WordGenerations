@@ -182,8 +182,10 @@ class CWord:
         return string;
 
     def GetFirstHalf(self):
+        #return self.contents[:math.floor(self.length)];
         return self.contents[:math.floor(self.length * 0.5)];
 
     def GetSeccondHalf(self):
+        #return self.contents[math.floor(self.length):];
         return self.contents[math.floor(self.length * 0.5):];
 

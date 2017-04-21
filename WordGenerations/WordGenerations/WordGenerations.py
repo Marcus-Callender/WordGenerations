@@ -16,22 +16,18 @@ def main():
     DisplayWords(words, generations);
     Sort(words, wordToFind);
 
-    hello = CWord();
-    hello.SetWord("hello");
-    print(hello.GetFirstHalf());
-    print(hello.GetSeccondHalf());
-    print(hello.GetFirstHalf() + hello.GetSeccondHalf());
+    #loops until the most matching word is a 100% match
+    while (not CheckFoundWord(words, wordToFind)):
+        CreateNewWords(words);
+    
+        for z in range(NumberOfWords):
+            words[z].Mutate();
+    
+        Sort(words, wordToFind);
+        generations += 1;
+        DisplayWords(words, generations);
 
-    # loops until the most matching word is a 100% match
-    #while (not CheckFoundWord(words, wordToFind)):
-    #    CreateNewWords(words);
-    #
-    #    for z in range(NumberOfWords):
-    #        words[z].Mutate();
-    #
-    #    Sort(words, wordToFind);
-    #    generations += 1;
-    #    DisplayWords(words, generations);
+        system("cls");
 
 def Sort(words, wordToFind):
     z = 0;
@@ -56,11 +52,12 @@ def CheckFoundWord(words, wordToFind):
     return words[0].Compare(wordToFind) == 1.0;
 
 def DisplayWords(words, generations):
+    #if (generations % 50 == 0):
     print("This is Gen " + str(generations) + ": ");
-
+    
     for z in range(NumberOfWords):
         words[z].Display();
-
+    
         if (z == NumberOfWords - 1):
             print('\n', end = '');
         else:
