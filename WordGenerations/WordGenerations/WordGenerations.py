@@ -9,28 +9,39 @@ def main():
     wordToFind = "confidant";
     words = [None] * NumberOfWords;
 
+    # creates the class instances
     for z in range(NumberOfWords):
         words[z] = CWord();
 
     DisplayWords(words, generations);
     Sort(words, wordToFind);
 
-    while (not CheckFoundWord(words, wordToFind)):
-        CreateNewWords(words);
+    hello = CWord();
+    hello.SetWord("hello");
+    print(hello.GetFirstHalf());
+    print(hello.GetSeccondHalf());
+    print(hello.GetFirstHalf() + hello.GetSeccondHalf());
 
-        for z in range(NumberOfWords):
-            words[z].Mutate();
-
-        Sort(words, wordToFind);
-        generations += 1;
-        DisplayWords(words, generations);
+    # loops until the most matching word is a 100% match
+    #while (not CheckFoundWord(words, wordToFind)):
+    #    CreateNewWords(words);
+    #
+    #    for z in range(NumberOfWords):
+    #        words[z].Mutate();
+    #
+    #    Sort(words, wordToFind);
+    #    generations += 1;
+    #    DisplayWords(words, generations);
 
 def Sort(words, wordToFind):
     z = 0;
     x = 1;
 
+    # loops over the words array, starting at the begining 
     while (z < len(words)):
+        # loops over the words greater than the z value until the end each time the z value increses
         while (x < len(words)):
+            # if the z word is less or as connected to the x word they swap places in the array
             if (words[z].Compare(wordToFind) <= words[x].Compare(wordToFind)):
                 temp = words[z];
                 words[z] = words[x];
@@ -60,18 +71,20 @@ def CreateNewWords(words):
     length *= 0.5;
     length = int(length);
 
+    # an array of unasigned values the size of half the number of words
+    # TODO make the size of this array scale with the number of words
     seccondHalfSet = [-1, -1, -1, -1, -1, -1];
-    count = 0;
+    values = 0;
 
-    for z in range(length):
-        seccondHalfSet[z] = -1;
+    #for z in range(length):
+    #    seccondHalfSet[z] = -1;
 
-    while (count < length):
+    while (values < length):
         randomPos = random.randrange(0, length);
 
         if (seccondHalfSet[randomPos] == -1):
-            seccondHalfSet[randomPos] = z;
-            count += 1;
+            seccondHalfSet[randomPos] = values;
+            values += 1;
 
     for z in range(length):
         words[z + length].SetWord(words[z].GetFirstHalf() + words[seccondHalfSet[z]].GetSeccondHalf());

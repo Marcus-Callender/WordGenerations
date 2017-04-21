@@ -45,8 +45,10 @@ class CWord:
             print("Swap: " + temp + " -> " + self.contents);
 
     def Compare(self, wordToFind):
+        # creates coppies of both words to be compared
         tempMe = self.contents;
         tempComparitor = wordToFind;
+        
         matchingLetters = 0;
 
         z = 0;
@@ -70,10 +72,10 @@ class CWord:
 
         remainingLetters = len(tempComparitor) + len(tempMe);
         letterMatchPercent = (matchingLetters / (remainingLetters + matchingLetters));
-        letterMatchPercent *= 0.5;
 
         patternMatchPercent = 0;
 
+        # checks if the first letter of each word are the same
         if (wordToFind[0] == self.contents[0]):
             patternMatchPercent += 1;
 
@@ -86,13 +88,16 @@ class CWord:
                     patternMatchPercent += 1;
                     break;
             
+        # checks if the last letter of each word are the same
         if (wordToFind[-1] == self.contents[-1]):
             patternMatchPercent += 1;
 
+        # the start and end of the word are one pattern each plus one for each letter in the word minus one
+        # this can also be written as : patternMatchPercent / ( 1 + (len(wordToFind)));
         patternMatchPercent = patternMatchPercent / ( 2 + (len(wordToFind) - 1));
-        patternMatchPercent *= 0.5;
 
-        return letterMatchPercent + patternMatchPercent;
+        # returns a combanation of the two match algrythems
+        return (letterMatchPercent + patternMatchPercent) * 0.5;
 
     def MutateChange(self):
         # selects a random char in the string and records it
@@ -113,6 +118,8 @@ class CWord:
             randomChar = chr(random.randrange(97, 123));
             randomIndex = random.randrange(0, self.length + 1);
 
+            self.length += 1;
+
             self.contents = self.Add(randomIndex, randomChar, self.contents);
 
     def MutateRemove(self):
@@ -121,6 +128,8 @@ class CWord:
 
             # selects a random char to remove
             randomPos = random.randrange(0, len(self.contents));
+
+            self.length -= 1;
 
             self.contents = self.Remove(randomPos, self.contents);
 
@@ -173,8 +182,8 @@ class CWord:
         return string;
 
     def GetFirstHalf(self):
-        return self.contents[:math.ceil(self.length)];
+        return self.contents[:math.floor(self.length * 0.5)];
 
     def GetSeccondHalf(self):
-        return self.contents[math.floor(self.length):];
+        return self.contents[math.floor(self.length * 0.5):];
 
