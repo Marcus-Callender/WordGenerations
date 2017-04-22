@@ -1,6 +1,8 @@
 from Word import CWord
 
 import random
+import os
+import time
 
 NumberOfWords = 12;
 
@@ -16,18 +18,21 @@ def main():
     DisplayWords(words, generations);
     Sort(words, wordToFind);
 
-    #loops until the most matching word is a 100% match
+    # loops until the most matching word is a 100% match
     while (not CheckFoundWord(words, wordToFind)):
         CreateNewWords(words);
     
-        for z in range(NumberOfWords):
-            words[z].Mutate();
+        #for z in range(NumberOfWords):
+        #    words[z].Mutate();
     
         Sort(words, wordToFind);
         generations += 1;
+
+        #if (generations % 50 == 1):
+        #os.system("cls");
         DisplayWords(words, generations);
 
-        system("cls");
+        #time.sleep(0.05);
 
 def Sort(words, wordToFind):
     z = 0;
@@ -85,6 +90,7 @@ def CreateNewWords(words):
 
     for z in range(length):
         words[z + length].SetWord(words[z].GetFirstHalf() + words[seccondHalfSet[z]].GetSeccondHalf());
+        words[z + length].Mutate();
     
 
     
